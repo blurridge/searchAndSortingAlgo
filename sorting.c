@@ -89,16 +89,16 @@ void quickSortRecur(int numArr[], int low, int high){
 
 int partition(int numArr[], int low, int high){
                                                        
-    int pivot = numArr[high], i = low, j;
+    int pivot = numArr[high], i = low, j; // Sets the pivot to the last element of the array.
     for(j = low; j < high; j++)
     {
-        if(numArr[j] <= pivot)
+        if(numArr[j] <= pivot) // If current element is less than or equal to pivot, swap the current element and the element with the low's index.
         {
             swap(&numArr[i], &numArr[j]);
             i++;
         }
     }
-    swap(&numArr[i], &numArr[high]);
+    swap(&numArr[i], &numArr[high]); // Swap the pivot with the element with the low's index. This is done since it is guaranteed that the value with i's index is greater than the pivot.
     return i;    
 }
 
@@ -111,7 +111,7 @@ void selectionSort(int numArr[], int size){
     printf("\n");
     for(i = 0; i < size; i++)
     {
-        minIdx = i;
+        minIdx = i; // Set minimum index to the current i iteration which sets a boundary. This boundary signifies 
         for(j = i+1; j < size; j++)
         {
             if(numArr[j] < numArr[minIdx])
