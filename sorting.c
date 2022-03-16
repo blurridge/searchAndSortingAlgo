@@ -7,6 +7,7 @@ void quickSortRecur(int numArr[], int low, int high);
 int partition(int numArr[], int low, int high);
 void selectionSort(int numArr[], int size);
 void heapSort(int numArr[], int size);
+void heapify(int numArr[], int size, int root);
 void insertionSort(int numArr[], int size);
 void shellSort(int numArr[], int size);
 void swap(int *first, int *second);
@@ -111,13 +112,13 @@ void selectionSort(int numArr[], int size){
     printf("\n");
     for(i = 0; i < size; i++)
     {
-        minIdx = i; // Set minimum index to the current i iteration which sets a boundary. This boundary signifies 
+        minIdx = i; // Set minimum index to the current i iteration which sets a boundary. This boundary signifies the elements before it are already sorted.
         for(j = i+1; j < size; j++)
         {
-            if(numArr[j] < numArr[minIdx])
+            if(numArr[j] < numArr[minIdx]) // If current element is lesser than the element with the minimum index, switch the minimum index to the current element's index.
                 minIdx = j;
         }
-        swap(&numArr[minIdx], &numArr[i]);
+        swap(&numArr[minIdx], &numArr[i]); // Once element with the lowest value is found in the current unsorted portion, swap element with minimum index with the boundary element.
     }
     printf("After selection sort: ");
     for(i = 0; i < size; i++)
@@ -127,5 +128,34 @@ void selectionSort(int numArr[], int size){
 
 void heapSort(int numArr[], int size){
 
-    
+    int i;
+    printf("Before heap sort: ");
+    for(i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
+    for(i = size/2 - 1; i >= 0; i--) // Creates the max heap
+        heapify(numArr, size, i);
+    for(i = size - 1; i > 0; i--) // Extracts root 1 by 1 
+    {
+        swap(&numArr[0], &numArr[i]); // Moves root to end
+        heapify(numArr, i, 0); // Creates a max heap without the new end
+    }
+    printf("After heap sort: ");
+    for(i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
+}
+
+void heapify(int numArr[], int size, int root){
+
+    int largest = root, left = 2*root+1, right = 2*root+2;
+    if(left < size && numArr[left] > numArr[largest]) // Checks if left child is greater than current largest.
+        largest = left;
+    if(right < size && numArr[right] > numArr[largest]) // Checks if right child is greater than current largest.
+        largest = right;
+    if(largest != root) // If largest index is not equal to root, swap root index and largest.
+    {
+        swap(&numArr[root], &numArr[largest]);
+        heapify(numArr, size, largest);
+    }
 }
