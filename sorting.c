@@ -236,16 +236,17 @@ void linearSearch(int numArr[], int size, int key){
 void binarySearch(int numArr[], int size, int key){
 
     int max = size-1, min = 0, median, pos = -1;
-    while(max != min+1 && pos == -1)
+    while(min <= max && pos == -1)
     {
         median = (max+min)/2;
-        pos = (key == numArr[min]) ? pos = min : (key == numArr[max]) ? pos = max : (key == numArr[median]) ? pos = median : -1;
-        if(pos == -1)
+        if(key == numArr[median])
+            pos = median;
+        else if(pos == -1)
         {
             if(key < numArr[median])
-                max = median;
+                max = median - 1;
             else
-                min = median;
+                min = median + 1;
         }
     }
     if(pos != -1)
