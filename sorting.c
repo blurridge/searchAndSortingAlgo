@@ -12,11 +12,13 @@ void insertionSort(int numArr[], int size);
 void shellSort(int numArr[], int size);
 void linearSearch(int numArr[], int size, int key);
 void binarySearch(int numArr[], int size, int key);
+int binarySearchRecur(int numArr[], int min, int max, int key);
+void printRecursion(int key, int pos);
 void swap(int *first, int *second);
 
 int main(){
 
-    int numArr[] = {5, 4, 2, 1, 10, 30, 20};
+    int numArr[] = {5, 4, 2, 1, 10, 30, 20}, pos;
     int size = sizeof(numArr)/sizeof(numArr[0]);
     bubbleSort(numArr, size);
     int numArr2[] = {5, 4, 2, 1, 10, 30, 20};
@@ -30,11 +32,15 @@ int main(){
     int numArr6[] = {5, 4, 2, 1, 10, 30, 20};
     shellSort(numArr6, size);
     printf("\n\n");
-    int num1 = 20, num2 = 5, pos;
+    int num1 = 6, num2 = 5;
     linearSearch(numArr, size, num1);
     linearSearch(numArr, size, num2);
     binarySearch(numArr, size, num1);
     binarySearch(numArr, size, num2);
+    pos = binarySearchRecur(numArr, 0, size-1, num1);
+    printRecursion(num1, pos);
+    pos = binarySearchRecur(numArr, 0, size-1, num2);
+    printRecursion(num2, pos);
 }
 
 void swap(int *first, int *second){
@@ -246,4 +252,28 @@ void binarySearch(int numArr[], int size, int key){
         printf("%d is found in position #%d.\n", key, pos);
     else
         printf("%d not found.\n", key);
+}
+
+int binarySearchRecur(int numArr[], int min, int max, int key){
+
+    int median = (max+min)/2;
+    if(key == numArr[median])
+        return median;
+    else if(min <= max)
+    {
+        if(key < numArr[median])
+            return binarySearchRecur(numArr, min, median - 1, key);
+        else if(key > numArr[median])
+            return binarySearchRecur(numArr, median + 1, max, key);
+    }
+    else
+        return -1;
+}
+
+void printRecursion(int key, int pos){
+
+    if(pos != -1)
+        printf("(Binary Recur) %d is found in position #%d\n", key, pos);
+    else
+        printf("(Binary Recur) %d not found.\n", key);
 }
