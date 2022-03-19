@@ -14,6 +14,7 @@ void linearSearch(int numArr[], int size, int key);
 void binarySearch(int numArr[], int size, int key);
 int binarySearchRecur(int numArr[], int min, int max, int key);
 void printRecursion(int key, int pos);
+void printArr(int numArr[], int size);
 void swap(int *first, int *second);
 
 int main(){
@@ -51,13 +52,18 @@ void swap(int *first, int *second){
     *second = temp;
 }
 
+void printArr(int numArr[], int size){
+
+    for(int i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
+}
+
 void bubbleSort(int numArr[], int size){
 
     int i, j, k, swapped, passNum = 0;
     printf("Before bubble sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
     for(i = 0; i < size-1; i++)
     {
         swapped = 0;
@@ -73,23 +79,17 @@ void bubbleSort(int numArr[], int size){
             break;
     }
     printf("After bubble sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
 }
 
 void quickSort(int numArr[], int low, int high){
 
     int i;
     printf("Before quick sort: ");
-    for(i = 0; i < high+1; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, high+1);
     quickSortRecur(numArr, low, high); // Calls the recursive quick sort function.
     printf("After quick sort: ");
-    for(i = 0; i < high+1; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, high+1);
 }
 
 void quickSortRecur(int numArr[], int low, int high){
@@ -121,9 +121,7 @@ void selectionSort(int numArr[], int size){
 
     int i, j, minIdx;
     printf("Before selection sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
     for(i = 0; i < size; i++)
     {
         minIdx = i; // Set minimum index to the current i iteration which sets a boundary. This boundary signifies the elements before it are already sorted.
@@ -135,18 +133,14 @@ void selectionSort(int numArr[], int size){
         swap(&numArr[minIdx], &numArr[i]); // Once element with the lowest value is found in the current unsorted portion, swap element with minimum index with the boundary element.
     }
     printf("After selection sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
 }
 
 void heapSort(int numArr[], int size){
 
     int i;
     printf("Before heap sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
     for(i = size/2 - 1; i >= 0; i--) // Creates the max heap
         heapify(numArr, size, i);
     for(i = size - 1; i > 0; i--) // Extracts root 1 by 1 
@@ -155,9 +149,7 @@ void heapSort(int numArr[], int size){
         heapify(numArr, i, 0); // Creates a max heap without the new end
     }
     printf("After heap sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
 }
 
 void heapify(int numArr[], int size, int root){
@@ -178,9 +170,7 @@ void insertionSort(int numArr[], int size){
 
     int i, j;
     printf("Before insertion sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
     for(i = 0; i < size; i++)
     {
         j = i;  // Set j to current index
@@ -191,18 +181,14 @@ void insertionSort(int numArr[], int size){
         }
     }
     printf("After insertion sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
 }
 
 void shellSort(int numArr[], int size){
 
     int gap, i, j, temp;
     printf("Before shell sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
     for(gap = size/2; gap > 0; gap/=2) // Calculate for gap size per iteration. Gets smaller every iteration.
     {
         for(i = gap; i < size; i++) // Iterate from gap element to the end of the array
@@ -214,9 +200,7 @@ void shellSort(int numArr[], int size){
         }
     }
     printf("After shell sort: ");
-    for(i = 0; i < size; i++)
-        printf("%d ", numArr[i]);
-    printf("\n");
+    printArr(numArr, size);
 }
 
 void linearSearch(int numArr[], int size, int key){
@@ -228,9 +212,9 @@ void linearSearch(int numArr[], int size, int key){
             pos = i;
     }
     if(pos != -1)
-        printf("%d is found in position #%d.\n", key, pos);
+        printf("(Linear Search) %d is found in position #%d.\n", key, pos);
     else
-        printf("%d not found.\n", key);
+        printf("(Linear Search) %d not found.\n", key);
 }
 
 void binarySearch(int numArr[], int size, int key){
@@ -250,9 +234,9 @@ void binarySearch(int numArr[], int size, int key){
         }
     }
     if(pos != -1)
-        printf("%d is found in position #%d.\n", key, pos);
+        printf("(Binary Iterative) %d is found in position #%d.\n", key, pos);
     else
-        printf("%d not found.\n", key);
+        printf("(Binary Iterative) %d not found.\n", key);
 }
 
 int binarySearchRecur(int numArr[], int min, int max, int key){
