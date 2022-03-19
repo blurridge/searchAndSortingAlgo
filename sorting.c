@@ -258,11 +258,11 @@ void binarySearch(int numArr[], int size, int key){
 int binarySearchRecur(int numArr[], int min, int max, int key){
 
     int median = (max+min)/2;
-    if(key == numArr[median])
-        return median;
-    else if(min <= max)
+    if(min <= max)
     {
-        if(key < numArr[median])
+        if(key == numArr[median])
+            return median;
+        else if(key < numArr[median])
             return binarySearchRecur(numArr, min, median - 1, key);
         else if(key > numArr[median])
             return binarySearchRecur(numArr, median + 1, max, key);
