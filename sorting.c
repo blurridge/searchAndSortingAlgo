@@ -251,8 +251,7 @@ int binarySearchRecur(int numArr[], int min, int max, int key){
         else if(key > numArr[median])
             return binarySearchRecur(numArr, median + 1, max, key); // Recursively calls the function with median + 1 as min.
     }
-    else
-        return -1; // Returns -1 once min is not <= to max. This happens if key is not found.
+    return -1; // Returns -1 once min is not <= to max. This happens if key is not found.
 }
 
 void printRecursion(int key, int pos){
