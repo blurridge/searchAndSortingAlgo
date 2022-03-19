@@ -26,7 +26,7 @@ int main(){
     int numArr5[] = {5, 4, 2, 1, 10, 30, 20};
     insertionSort(numArr5, size);
     int numArr6[] = {5, 4, 2, 1, 10, 30, 20};
-    // shellSort(numArr6, size);
+    shellSort(numArr6, size);
 }
 
 void swap(int *first, int *second){
@@ -177,6 +177,29 @@ void insertionSort(int numArr[], int size){
         }
     }
     printf("After insertion sort: ");
+    for(i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
+}
+
+void shellSort(int numArr[], int size){
+
+    int gap, i, j, temp;
+    printf("Before shell sort: ");
+    for(i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
+    for(gap = size/2; gap > 0; gap/=2) // Calculate for gap size per iteration. Gets smaller every iteration.
+    {
+        for(i = gap; i < size; i++) // Iterate from gap element to the end of the array
+        {
+            temp = numArr[i]; // Store current element in a temp value
+            for(j = i; j >= gap && numArr[j - gap] > temp; j-=gap) // Loop from current j until gap or when current gap value is less than temp.
+                numArr[j] = numArr[j-gap]; // Current j gets replaced with its gap value if gap value is greater than current j. Continues until no greater value is found/not less than gap.
+            numArr[j] = temp; // Replace j element with the temp value. J and temp value will replace with itself if it is in correct position.
+        }
+    }
+    printf("After shell sort: ");
     for(i = 0; i < size; i++)
         printf("%d ", numArr[i]);
     printf("\n");
