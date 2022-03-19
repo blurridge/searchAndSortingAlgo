@@ -30,11 +30,11 @@ int main(){
     int numArr6[] = {5, 4, 2, 1, 10, 30, 20};
     shellSort(numArr6, size);
     printf("\n\n");
-    int num1 = 10, num2 = 40, pos;
+    int num1 = 20, num2 = 5, pos;
     linearSearch(numArr, size, num1);
     linearSearch(numArr, size, num2);
-    // binarySearch(numArr, size, num1);
-    // binarySearch(numArr, size, num2);
+    binarySearch(numArr, size, num1);
+    binarySearch(numArr, size, num2);
 }
 
 void swap(int *first, int *second){
@@ -215,12 +215,35 @@ void shellSort(int numArr[], int size){
 
 void linearSearch(int numArr[], int size, int key){
 
-    int i, flag = 0 ;
-    for(i = 0; i < size && flag == 0; i++)
+    int i, pos = -1;
+    for(i = 0; i < size && pos == -1; i++)
+    {
         if(numArr[i] == key)
-            flag = 1;
-    if(flag == 1)
-        printf("%d is found in position #%d.\n", key, i);
+            pos = i;
+    }
+    if(pos != -1)
+        printf("%d is found in position #%d.\n", key, pos);
+    else
+        printf("%d not found.\n", key);
+}
+
+void binarySearch(int numArr[], int size, int key){
+
+    int max = size-1, min = 0, median, pos = -1;
+    while(max != min+1 && pos == -1)
+    {
+        median = (max+min)/2;
+        pos = (key == numArr[min]) ? pos = min : (key == numArr[max]) ? pos = max : (key == numArr[median]) ? pos = median : -1;
+        if(pos == -1)
+        {
+            if(key < numArr[median])
+                max = median;
+            else
+                min = median;
+        }
+    }
+    if(pos != -1)
+        printf("%d is found in position #%d.\n", key, pos);
     else
         printf("%d not found.\n", key);
 }
