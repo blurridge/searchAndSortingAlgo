@@ -24,7 +24,7 @@ int main(){
     int numArr4[] = {5, 4, 2, 1, 10, 30, 20};
     heapSort(numArr4, size);
     int numArr5[] = {5, 4, 2, 1, 10, 30, 20};
-    // insertionSort(numArr5, size);
+    insertionSort(numArr5, size);
     int numArr6[] = {5, 4, 2, 1, 10, 30, 20};
     // shellSort(numArr6, size);
 }
@@ -89,7 +89,7 @@ void quickSortRecur(int numArr[], int low, int high){
 }
 
 int partition(int numArr[], int low, int high){
-                                                       
+                                               
     int pivot = numArr[high], i = low, j; // Sets the pivot to the last element of the array.
     for(j = low; j < high; j++)
     {
@@ -158,4 +158,26 @@ void heapify(int numArr[], int size, int root){
         swap(&numArr[root], &numArr[largest]);
         heapify(numArr, size, largest);
     }
+}
+
+void insertionSort(int numArr[], int size){
+
+    int i, j;
+    printf("Before insertion sort: ");
+    for(i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
+    for(i = 0; i < size; i++)
+    {
+        j = i;  // Set j to current index
+        while(j > 0 && numArr[j-1] > numArr[j]) // Iterate backwards until j is not greater than zero or if it is less than the previous element.
+        {
+            swap(&numArr[j], &numArr[j-1]); // Swap if previous element is less than the current element
+            j--; // Decrement j in order to compare current element with the next previous element.
+        }
+    }
+    printf("After insertion sort: ");
+    for(i = 0; i < size; i++)
+        printf("%d ", numArr[i]);
+    printf("\n");
 }
