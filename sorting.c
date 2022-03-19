@@ -10,6 +10,8 @@ void heapSort(int numArr[], int size);
 void heapify(int numArr[], int size, int root);
 void insertionSort(int numArr[], int size);
 void shellSort(int numArr[], int size);
+void linearSearch(int numArr[], int size, int key);
+void binarySearch(int numArr[], int size, int key);
 void swap(int *first, int *second);
 
 int main(){
@@ -27,6 +29,12 @@ int main(){
     insertionSort(numArr5, size);
     int numArr6[] = {5, 4, 2, 1, 10, 30, 20};
     shellSort(numArr6, size);
+    printf("\n\n");
+    int num1 = 10, num2 = 40, pos;
+    linearSearch(numArr, size, num1);
+    linearSearch(numArr, size, num2);
+    // binarySearch(numArr, size, num1);
+    // binarySearch(numArr, size, num2);
 }
 
 void swap(int *first, int *second){
@@ -203,4 +211,16 @@ void shellSort(int numArr[], int size){
     for(i = 0; i < size; i++)
         printf("%d ", numArr[i]);
     printf("\n");
+}
+
+void linearSearch(int numArr[], int size, int key){
+
+    int i, flag = 0 ;
+    for(i = 0; i < size && flag == 0; i++)
+        if(numArr[i] == key)
+            flag = 1;
+    if(flag == 1)
+        printf("%d is found in position #%d.\n", key, i);
+    else
+        printf("%d not found.\n", key);
 }
