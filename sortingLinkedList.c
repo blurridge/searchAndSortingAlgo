@@ -97,7 +97,7 @@ void sortList(LL *head){
 
     int swapped, i, j;
     char nameTemp[25], phoneTemp[15];
-    for(i = 0; i < nodeCount; i++)
+    for(i = 0; i < nodeCount - 1; i++)
     {
         swapped = 0;
         NODE *current_node = *head, *next_node = current_node->next;
