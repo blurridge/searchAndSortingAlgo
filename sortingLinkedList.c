@@ -13,8 +13,10 @@ void printChoices();
 NODE *createNode();
 void assignData(NODE **newNode, char data[], char person[]);
 void insertNode(NODE *newNode, LL *head);
-// void sortList(LL *currentList);
+void sortList(LL *head);
 void printList(LL head);
+
+int nodeCount = 0;
 
 int main(){
 
@@ -40,14 +42,14 @@ int main(){
         if(choice == 2)
             printList(head);
 
-        // if(choice == 3)
-        // {
-        //     printf("Before sorting: \n");
-        //     printList(head);
-        //     sortList(head);
-        //     printf("After sorting: \n");
-        //     printList(head);
-        // }
+        if(choice == 3)
+        {
+            printf("Before sorting: \n");
+            printList(head);
+            sortList(&head);
+            printf("After sorting: \n");
+            printList(head);
+        }
     }
 
     return 0;
@@ -80,6 +82,7 @@ void insertNode(NODE *newNode, LL *head){
     newNode->next = *head;
     *head = newNode;
     printf("Successfully inserted node!\n");
+    nodeCount++;
 }
 
 void printList(LL head){
@@ -87,4 +90,34 @@ void printList(LL head){
     NODE *trav = head;
     for(; trav != NULL; trav = trav->next)
         printf("%s %s\n", trav->name, trav->phone);
+    printf("\n");
+}
+
+void sortList(LL *head){
+
+    int swapped, i, j;
+    char nameTemp[25], phoneTemp[15];
+    for(i = 0; i < nodeCount; i++)
+    {
+        swapped = 0;
+        NODE *current_node = *head, *next_node = current_node->next;
+        for(j = 0; j < nodeCount - i - 1; j++)
+        {
+            if(strcmp(current_node->name, next_node->name) > 0)
+            {
+                strcpy(nameTemp, current_node->name);
+                strcpy(current_node->name, next_node->name);
+                strcpy(next_node->name, nameTemp);
+
+                strcpy(phoneTemp, current_node->phone);
+                strcpy(current_node->phone, next_node->phone);
+                strcpy(next_node->phone, phoneTemp);
+                swapped = 1;
+            }
+            current_node = current_node->next;
+            next_node = current_node->next;
+        }
+        if(swapped == 0)
+            break;
+    }
 }
