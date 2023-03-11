@@ -59,7 +59,7 @@ void printArr(int numArr[], int size){
     printf("\n");
 }
 
-void bubbleSort(int numArr[], int size){
+void bubbleSort(int numArr[], int size){ // O(n^2)
 
     int i, j, k, swapped, passNum = 0;
     printf("Before bubble sort: ");
@@ -82,7 +82,7 @@ void bubbleSort(int numArr[], int size){
     printArr(numArr, size);
 }
 
-void quickSort(int numArr[], int low, int high){
+void quickSort(int numArr[], int low, int high){ // O(n^2) when partition picked is worst
 
     int i;
     printf("Before quick sort: ");
@@ -92,7 +92,7 @@ void quickSort(int numArr[], int low, int high){
     printArr(numArr, high+1);
 }
 
-void quickSortRecur(int numArr[], int low, int high){
+void quickSortRecur(int numArr[], int low, int high){ 
 
     if(low < high) // If low < high, that means low and high aren't equal which indicates that the array hasn't been sorted.
     {
@@ -117,7 +117,7 @@ int partition(int numArr[], int low, int high){
     return i;    
 }
 
-void selectionSort(int numArr[], int size){
+void selectionSort(int numArr[], int size){ // O(n^2)
 
     int i, j, minIdx;
     printf("Before selection sort: ");
@@ -136,7 +136,7 @@ void selectionSort(int numArr[], int size){
     printArr(numArr, size);
 }
 
-void heapSort(int numArr[], int size){
+void heapSort(int numArr[], int size){ // O(n log n)
 
     int i;
     printf("Before heap sort: ");
@@ -166,7 +166,7 @@ void heapify(int numArr[], int size, int root){
     }
 }
 
-void insertionSort(int numArr[], int size){
+void insertionSort(int numArr[], int size){ // O(n^2)
 
     int i, j;
     printf("Before insertion sort: ");
@@ -184,7 +184,7 @@ void insertionSort(int numArr[], int size){
     printArr(numArr, size);
 }
 
-void shellSort(int numArr[], int size){
+void shellSort(int numArr[], int size){ // O(n^2)
 
     int gap, i, j, temp;
     printf("Before shell sort: ");
@@ -203,7 +203,7 @@ void shellSort(int numArr[], int size){
     printArr(numArr, size);
 }
 
-void linearSearch(int numArr[], int size, int key){
+void linearSearch(int numArr[], int size, int key){ // O(n)
 
     int i, pos = -1;
     for(i = 0; i < size && pos == -1; i++)
@@ -217,7 +217,7 @@ void linearSearch(int numArr[], int size, int key){
         printf("(Linear Search) %d not found.\n", key);
 }
 
-void binarySearch(int numArr[], int size, int key){
+void binarySearch(int numArr[], int size, int key){ // O(n^2)
 
     int max = size-1, min = 0, median, pos = -1;
     while(min <= max && pos == -1)
